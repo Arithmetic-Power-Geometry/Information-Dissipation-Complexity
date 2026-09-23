@@ -18,30 +18,34 @@ This file is the authoritative status ledger for paper drafting.
 
 ## B. Computer-assisted finite certificates
 
-- Four-level normalization (x=(0,1,u,v)), (1<u<v).
-- Exactly ten relevant affine walls.
-- Exhaustive feasibility enumeration of all (2^{10}) wall-sign vectors yields 24 generic chambers.
+- Four-level normalization (x=(0,1,u,v)), (1<u<v), is used for the all-real-zero upper-bound chamber analysis.
+- Exactly ten relevant affine walls; exhaustive feasibility enumeration of all (2^{10}) wall-sign vectors yields 24 generic chambers.
 - Generic chamber sign-variation histogram: 12 chambers at 5, 6 at 7, 2 at 9, 4 at 11.
-- Analytic boundary-merging lemma extends the generic maximum to all walls/intersections, yielding the global four-level upper bound (N_V(W)\le11).
-- Exact rational four-level family (x=(0,1/4,15/28,55/56)), multiplicities ((3,518,2786,135)), has four disjoint physical sign-changing brackets certified by outward-rounded interval arithmetic.
-- Therefore the current four-level theorem is
+- Analytic boundary merging extends the generic maximum to walls/intersections, yielding (N_V(W)\le11).
+- A stronger exact lower-bound family is now certified:
+  (x=(0,7/250,57/400,137/500)), multiplicities ((1,103,5246,6376)).
+  Outward-rounded interval arithmetic gives five disjoint physical sign-changing brackets for (\kappa_3(t)): [2.5,3], [19,21], [31,34], [90,96], [160,175].
+- Therefore the current certified four-level result is
 [
-\boxed{4\le N_{\max}(4)\le11}.
+\boxed{5\le N_{\max}(4)\le11}.
 ]
 
 ## C. Exploratory evidence — never state as theorem
 
-- Broad random searches have not yet found a five-root four-level example.
+- Earlier scale-fixed searches failed to find five roots; that negative evidence is superseded for physical-root discovery because fixing the first information gap to 1 can move roots across the physical boundary (t=1).
 - Four generic chambers attain coefficient sign variation 11, but this does not imply 11 zeros are attainable.
 - The exact value of (N_{\max}(4)) remains open.
 
-## D. Classical ingredients that require attribution
+## D. Search-design rule
+
+For all-real-zero upper bounds one may affinely normalize distinct information levels to (x=(0,1,u,v)). For searches restricted to the physical domain (t>1), retain an independent positive scale (a): (x=a(0,1,u,v)). A common additive shift is harmless; positive scaling is not harmless relative to the fixed physical boundary.
+
+## E. Classical ingredients that require attribution
 
 Rényi entropy, escort distributions, exponential-family cumulant identities, Laplace-transform uniqueness, Newton/Prony/Vandermonde reconstruction, and generalized Descartes/variation-diminishing zero bounds are classical. The exponential-polynomial sign-variation bound must be cited rather than presented as an APG theorem.
 
-## E. Candidate contribution to foreground
+## F. Candidate contribution to foreground
 
-The strongest candidate contribution is not the classical escort machinery itself, but the transition-complexity program:
-finite probability-level geometry -> multiplicity-controlled escort varentropy -> transient amplification -> exact low-level transition classification -> sharp three-level complexity -> finite four-level complexity bounds.
+The strongest candidate contribution is the transition-complexity program: finite probability-level geometry -> multiplicity-controlled escort varentropy -> transient amplification -> exact low-level transition classification -> sharp three-level complexity -> finite four-level complexity bounds and explicit certified multi-transition constructions.
 
 Novelty wording remains provisional until the dedicated prior-art audit is complete.
