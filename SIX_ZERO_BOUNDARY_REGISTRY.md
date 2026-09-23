@@ -5,14 +5,14 @@
 | t -> infinity for fixed nondegenerate spectrum | explicit positive kappa3 asymptotic | proved |
 | t -> infinity on compact nondegenerate family | uniform tail lemma | proved |
 | pure information-level collision | analytic merging + three-level zero bound counting multiplicity | proved |
-| collision with simultaneous multiplicity/scale degeneration | requires rescaled limit | open |
-| zero-time collision | forces multiple-root conditions kappa3=kappa4=0 | partially reduced |
-| multiplicity ratio -> 0 or infinity | effective-support/rescaling analysis | open |
+| pure multiplicity deletion/blow-up at bounded times | projective normalization + analytic support deletion | proved |
+| multiplicity degeneration coupled to moving times | transition-layer rescaling required | open |
+| collision with simultaneous multiplicity/scale degeneration | rescaled limit required | open |
+| zero-time collision | forces kappa3=kappa4=0 | partially reduced |
 | scale a -> 0 or infinity | physical-boundary-sensitive rescaling | open |
 | compact separated interior | finite interval feasibility/certificate | open |
 
-The four-level theorem remains
+The rigorous four-level theorem remains
 [
-5le N_{max}(4)le 11.
+5\le N_{\max}(4)\le11.
 ]
-No exact value is claimed until all relevant escape regimes and the compact interior are controlled.
