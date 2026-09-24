@@ -1,12 +1,11 @@
 """Finite certificate for the generic four-level chamber arrangement.
 
-Enumerates all 2^10 wall-sign vectors.  Each feasible set is convex, hence a
-feasible sign vector is one chamber.  Also computes the coefficient-sign
-variation in each chamber.
-
-A separate boundary audit is required for points on one or more walls.
+Enumerates all 2^10 wall-sign vectors. Each feasible set is convex, hence a
+feasible sign vector is one chamber. The representative point is then moved
+strictly into the chamber by maximizing a common signed-wall margin, avoiding
+numerical representatives that lie effectively on a coefficient-sign wall.
 """
-import itertools, math
+import itertools
 import numpy as np
 from scipy.optimize import linprog
 
@@ -15,14 +14,22 @@ LINES=[
  (2,-2,1),(2,-1,0),(2,0,-1),(2,1,-2),(2,1,-1)
 ]
 
-def feasible(sig, eps=1e-7):
-    A=[[-1,0],[1,-1]]
-    b=[-1-eps,-eps]
+def interior_point(sig):
+    # variables (u,v,m), maximize m subject to wedge and signed walls >= m
+    # with m <= 1 to make the LP bounded.
+    A=[]; b=[]
+    # u >= 1+m -> -u + m <= -1
+    A.append([-1,0,1]); b.append(-1)
+    # v-u >= m -> u-v+m <= 0
+    A.append([1,-1,1]); b.append(0)
     for sg,(a,bu,bv) in zip(sig,LINES):
-        A.append([-sg*bu,-sg*bv])
-        b.append(sg*a-eps)
-    return linprog([0,0],A_ub=A,b_ub=b,bounds=[(None,None),(None,None)],
-                   method="highs")
+        # sg*(a+bu*u+bv*v) >= m
+        A.append([-sg*bu,-sg*bv,1])
+        b.append(sg*a)
+    A.append([0,0,1]); b.append(1)
+    r=linprog([0,0,-1],A_ub=A,b_ub=b,
+              bounds=[(None,None),(None,None),(0,None)],method="highs")
+    return r
 
 def triple(a,b,c):
     return (a-2*b+c)*(a+b-2*c)*(2*a-b-c)
@@ -44,18 +51,20 @@ def atoms(u,v):
 def variation(u,v):
     aa=atoms(u,v)
     signs=[z[1] for z in aa]
+    assert all(s != 0 for s in signs), "representative is not strictly generic"
     return sum(a!=b for a,b in zip(signs,signs[1:])),aa
 
 if __name__=="__main__":
     chambers=[]
     for sig in itertools.product((-1,1),repeat=10):
-        r=feasible(sig)
-        if r.success:
-            u,v=r.x
+        r=interior_point(sig)
+        if r.success and r.x[2] > 1e-9:
+            u,v,_=r.x
             C,aa=variation(u,v)
             chambers.append((sig,u,v,C))
     hist={}
-    for *_,C in chambers: hist[C]=hist.get(C,0)+1
+    for *_,C in chambers:
+        hist[C]=hist.get(C,0)+1
     print("feasible generic chambers =",len(chambers))
     print("variation histogram =",dict(sorted(hist.items())))
     print("max generic variation =",max(hist))
