@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated research record below."
+title: "Information Dissipation Complexity"
+type: software
+authors:
+  - family-names: "Akhtar"
+    given-names: "Mohammad Amir Khusru"
+    orcid: "https://orcid.org/0000-0002-3432-4199"
+repository-code: "https://github.com/Arithmetic-Power-Geometry/Information-Dissipation-Complexity"
+date-released: 2026-09-24
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Akhtar"
+      given-names: "Mohammad Amir Khusru"
+      orcid: "https://orcid.org/0000-0002-3432-4199"
+  title: "Power-Sum Deformation and Information-Dissipation Complexity: Sharp Low-Level Transition Theory and Four-Level Bounds"
+  year: 2026
+  version: "V1"
+  doi: "10.5281/zenodo.22931055"
+  url: "https://doi.org/10.5281/zenodo.22931055"
